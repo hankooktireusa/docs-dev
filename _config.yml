@@ -1,0 +1,4 @@
+title: docs-dev
+theme: minima
+minima:
+  skin: dark   # use Minima’s dark skin (respects system dark mode)
