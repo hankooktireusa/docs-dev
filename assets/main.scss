@@ -1,0 +1,14 @@
+:root { color-scheme: dark light; }
+
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background: #111 !important;
+    color: #e6e6e6 !important;
+  }
+  a { color: #9ecbff; }
+  .site-header, .site-footer { background: #111; border-color: #333; }
+  .site-title, .site-title:visited { color: #e6e6e6 !important; }
+  .page-link { color: #e6e6e6 !important; }
+  pre, code { background: #1a1a1a; }
+  details { color: inherit; }
+}

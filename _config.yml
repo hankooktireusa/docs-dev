@@ -3,3 +3,5 @@ description: ""   # remove footer text
 theme: minima
 minima:
   skin: dark   # force dark skin
+include:
+  - assets/css/custom.css
