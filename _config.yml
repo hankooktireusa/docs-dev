@@ -1,4 +1,5 @@
 title: docs-dev
+description: ""   # remove footer text
 theme: minima
 minima:
-  skin: dark   # use Minima’s dark skin (respects system dark mode)
+  skin: dark   # force dark skin
