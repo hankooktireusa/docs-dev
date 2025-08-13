@@ -1,7 +1,47 @@
-title: docs-dev
-description: ""   # remove footer text
+title: IT Docs
+description: ""   # keep footer minimal
+url: "https://hankooktireusa.github.io"
+baseurl: "/it-docs"
+permalink: pretty
+
+# Theme & skin (from docs-dev)
 theme: minima
 minima:
-  skin: dark   # force dark skin
+  skin: dark
+
+# Plugins (GitHub Pages–safe)
+plugins:
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+
+# Markdown engine
+markdown: kramdown
+kramdown:
+  input: GFM
+  parse_block_html: true
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+# Header nav (optional; you can add more later)
+header_pages:
+  - en/index.md
+  - ko/index.md
+
+# Defaults for language folders
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      path: "en"
+    values:
+      lang: en
+  - scope:
+      path: "ko"
+    values:
+      lang: ko
+
+# Ensure custom CSS is included in the site build (belt & suspenders)
 include:
   - assets/css/custom.css
