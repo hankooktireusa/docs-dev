@@ -1,22 +1,42 @@
-/* ===========================
-   Hankook palette + helpers
-   =========================== */
+/* =========================================================
+   Hankook Docs – Custom Theme
+   - Dark-friendly layout
+   - Clean nav
+   - Black code windows
+   - KO monospace fix for diagrams
+   - Working <details>/<summary> toggles
+   ========================================================= */
+
+/* ---------------------------
+   Palette & global tokens
+   --------------------------- */
 :root {
   --hk-orange: #ec6608;
   --hk-black:  #000000;
   --hk-gray1:  #9a9b9c;
 
-  /* tweakables */
   --radius: 8px;
   --space:  0.75rem;
+
+  /* Code surfaces */
+  --code-bg: #0b0b0c;
+  --code-inline-bg: #141518;
+  --code-text: #e6e6e6;
+  --code-border: #232428;
+  --code-radius: 8px;
+
+  /* Monospace stack (includes KO-friendly fonts) */
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "DejaVu Sans Mono", "Noto Sans Mono",
+          "D2Coding", "Nanum Gothic Coding", monospace;
 }
 
 body { line-height: 1.6; }
 
-/* Make the header container full-width & flush-left (override Minima) */
-.site-header {
-  padding-block: 8px;                 /* add a little vertical breathing room */
-}
+/* ---------------------------
+   Header layout
+   --------------------------- */
+.site-header { padding-block: 8px; }
 .site-header .wrapper{
   max-width: none !important;
   width: 100%;
@@ -25,48 +45,35 @@ body { line-height: 1.6; }
   padding-right: 12px;
 }
 .site-logo{ margin-left: 0; }
-.site-logo img{ display:block; height: 42px; } /* slightly taller & crisp */
+.site-logo img{ display:block; height: 42px; }
 
-/* ===========================
-   Header layout
-   =========================== */
-/* Logo hard-left; title+nav centered as a group */
 .header-bar {
   display: grid;
-  grid-template-columns: auto 1fr;    /* left logo, center group fills row */
-  align-items: center;                 /* vertical centering within the header */
+  grid-template-columns: auto 1fr;
+  align-items: center;
   padding: 0 16px;
-  min-height: 64px;                    /* ensures consistent header height */
+  min-height: 64px;
 }
 
-.site-logo { justify-self: start; }
-
-.header-center {
-  justify-self: center;                /* center the whole group horizontally */
-  display: flex;
-  align-items: center;                 /* vertically center title + nav */
-  gap: 1.5rem;                         /* space between title text and nav */
-  white-space: nowrap;                 /* keep in one line when possible */
-}
-
-.site-title-text {
-  font-size: 1.8rem;
-  font-weight: 500;
-}
-
-/* Keep nav links evenly spaced and vertically centered */
-.site-nav .trigger {
+/* If using the "center-block" group from the layout */
+.center-block{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
+  white-space: nowrap;
 }
+.site-title-text { font-size: 1.8rem; font-weight: 500; }
+.site-nav .trigger { display: flex; align-items: center; gap: 1rem; }
 .site-nav .page-link { margin: 0; }
 
-/* Small screens: stack nicely */
 @media (max-width: 768px) {
   .header-bar { grid-template-columns: 1fr; }
-  .header-center {
-    justify-self: start;
+  .center-block {
+    position: static;
+    transform: none;
     gap: 0.75rem;
     flex-wrap: wrap;
     white-space: normal;
@@ -75,21 +82,17 @@ body { line-height: 1.6; }
 }
 
 /* ---------------------------
-   Link styling (light mode)
+   Links & headings
    --------------------------- */
-a {
-  color: var(--hk-orange);
-  text-decoration: none;
-}
+a { color: var(--hk-orange); text-decoration: none; }
 a:hover, a:focus {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
-a:visited { color: #b44a06; }      /* darker orange for visited */
-a:active  { color: #ff7d2a; }       /* punch on click */
+a:visited { color: #b44a06; }
+a:active  { color: #ff7d2a; }
 
-/* Give headings a subtle HK accent underline on hover */
 h1:hover, h2:hover, h3:hover {
   text-decoration: underline;
   text-decoration-color: var(--hk-orange);
@@ -98,43 +101,29 @@ h1:hover, h2:hover, h3:hover {
 }
 
 /* ---------------------------
-   Dark mode
+   Dark mode baseline
    --------------------------- */
 @media (prefers-color-scheme: dark) {
   html, body {
-    background: #2a2a2a !important;   /* charcoal (adjust anytime) */
+    background: #2a2a2a !important;
     color: #e6e6e6 !important;
   }
 
-  /* Header / footer blend with page */
   .site-header, .site-footer {
     background: #2a2a2a;
     border-color: #444;
   }
 
-  /* Title text color + hover */
   .site-title-text { color: #e6e6e6; }
   .site-title-text:hover { color: var(--hk-orange); }
 
-  /* Header navigation links */
-  .site-nav .page-link {
-    color: #ffffff !important;       /* white text */
-  }
-  .site-nav .page-link:hover {
-    color: var(--hk-orange) !important; /* HK Orange on hover */
-  }
+  .site-nav .page-link { color: #ffffff !important; }
+  .site-nav .page-link:hover { color: var(--hk-orange) !important; }
 
-  /* Links pop on dark within content */
+  /* Links in content */
   a { color:  var(--hk-orange) !important; }
   a:visited { color: #ff9f5e; }
   a:hover, a:focus { color: #cf5306; }
-
-  /* Code blocks & inline code */
-  pre, code {
-    background: #3a3a3a;
-    border-radius: var(--radius);
-  }
-  pre { padding: calc(var(--space) + 0.25rem); }
 
   /* Tables */
   table { border-collapse: collapse; }
@@ -151,7 +140,7 @@ h1:hover, h2:hover, h3:hover {
     color: #eaeaea;
   }
 
-  /* Collapsibles */
+  /* Collapsibles (visuals only; behavior fixed later) */
   details {
     margin: 1rem 0;
     border: 1px solid #444;
@@ -164,7 +153,6 @@ h1:hover, h2:hover, h3:hover {
   }
   details > summary {
     cursor: pointer;
-    list-style: none;       /* keep triangle but style text */
     padding: var(--space) calc(var(--space) + 0.25rem);
     color: #fff;
     font-weight: 600;
@@ -173,12 +161,137 @@ h1:hover, h2:hover, h3:hover {
     border-top-left-radius: var(--radius);
     border-top-right-radius: var(--radius);
   }
-  details > summary:hover { color: var(--hk-orange); }
   details > *:not(summary) { padding: var(--space) calc(var(--space) + 0.25rem); }
 
   /* Horizontal rule */
   hr { border: 0; height: 1px; background: #444; }
 }
 
-/* Ensure summary marker spacing is nice across browsers */
+/* Keep native marker for toggles across browsers */
 summary { display: list-item; }
+
+/* ---------------------------
+   BLACK code windows (Rouge/Minima)
+   --------------------------- */
+
+/* Outer wrappers Minima/Rouge use */
+.highlight,
+figure.highlight,
+div.highlighter-rouge,
+pre.highlight {
+  background: var(--code-bg) !important;
+  color: var(--code-text) !important;
+  border: 1px solid var(--code-border) !important;
+  border-radius: var(--code-radius) !important;
+  box-shadow: none !important;
+}
+
+/* Actual <pre> area */
+pre,
+.highlight pre,
+div.highlighter-rouge pre {
+  background: transparent !important;          /* wrapper provides bg */
+  color: var(--code-text) !important;
+  margin: 0 !important;
+  padding: 0.9rem 1rem !important;
+  overflow: auto !important;
+  border: 0 !important;
+}
+
+/* Avoid double background on nested <code> */
+pre code,
+.highlight code,
+div.highlighter-rouge code {
+  background: transparent !important;
+  color: inherit !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+/* Inline code: ONLY outside <pre> */
+:not(pre) > code,
+p code, li code, td code, th code, blockquote code {
+  background: var(--code-inline-bg) !important;
+  color: var(--code-text) !important;
+  border: 1px solid var(--code-border) !important;
+  border-radius: 6px !important;
+  padding: .12em .35em !important;
+}
+
+/* Rouge line-numbers table variant */
+.rouge-table,
+.rouge-table td,
+.rouge-table th,
+.highlight table,
+.highlight td,
+.highlight th {
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--code-text) !important;
+}
+.rouge-gutter,
+.highlight .gutter {
+  color: #8b949e !important;
+  border-right: 1px solid var(--code-border) !important;
+  padding: 0.9rem 0.75rem 0.9rem 1rem !important;
+  user-select: none;
+}
+.rouge-code,
+.highlight .code {
+  padding: 0.9rem 1rem !important;
+}
+
+/* Minimal token colors for readability */
+.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs { color:#8b949e !important; font-style: italic; } /* comments */
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt,
+.highlight .o, .highlight .ow { color:#ff7b72 !important; } /* keywords/operators */
+.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd,
+.highlight .s2, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx, .highlight .sr,
+.highlight .s1, .highlight .ss { color:#a5d6ff !important; } /* strings */
+.highlight .na, .highlight .nt, .highlight .nc, .highlight .nn, .highlight .no { color:#d2a8ff !important; } /* names/tags/types */
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo { color:#79c0ff !important; } /* numbers */
+.highlight .p { color:#c9d1d9 !important; } /* punctuation */
+
+/* ---------------------------
+   KO diagram fix (true monospace, no ligatures)
+   --------------------------- */
+pre,
+code,
+kbd,
+samp,
+.highlight,
+.highlight * ,
+div.highlighter-rouge,
+div.highlighter-rouge * ,
+.rouge-code,
+.rouge-gutter {
+  font-family: var(--mono) !important;
+  font-variant-ligatures: none !important;
+  font-feature-settings: "liga" 0, "calt" 0;
+  letter-spacing: 0 !important;
+  white-space: pre;                 /* preserve ASCII-art spacing */
+  line-height: 1.3 !important;      /* grid-fit for box characters */
+  tab-size: 2;
+}
+
+/* ---------------------------
+   <details>/<summary> toggle fix
+   (restore native marker & behavior)
+   --------------------------- */
+details { display: block; }
+details > summary {
+  list-style: revert;
+  display: list-item;
+  cursor: pointer;
+  user-select: none;
+}
+details > summary:focus {
+  outline: 2px solid var(--hk-orange);
+  outline-offset: 2px;
+}
+
+/* (Keep this: ensures code inside blocks stays transparent) */
+pre code { background: transparent !important; }
+
+/* Ensure <details> content is hidden when not open (belt & suspenders) */
+details:not([open]) > *:not(summary) { display: none !important; }

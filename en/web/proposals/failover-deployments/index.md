@@ -23,68 +23,92 @@ Weighted ALB target group routing to enable zero-downtime **prod1 ↔ prod2** cu
 
 ---
 
-<details markdown="1">
-<summary>🛠 STEP-BY-STEP PLAN (AWS Console)</summary>
+<!-- Pure-HTML collapsible to avoid Markdown parser issues -->
+<details>
+  <summary>🛠 STEP-BY-STEP PLAN (AWS Console)</summary>
 
-### 1) Inspect Current Listener Rules
-- AWS Console → **EC2 → Load Balancers**
-- Select the **ALB** → **Listeners** tab → click **:443**
-- Review rules that match host/path → forward to `-web-tg` or `-portal-tg`.
+  <h3>1) Inspect Current Listener Rules</h3>
+  <ul>
+    <li>AWS Console → <strong>EC2 → Load Balancers</strong></li>
+    <li>Select the <strong>ALB</strong> → <strong>Listeners</strong> tab → click <strong>:443</strong></li>
+    <li>Review rules that match host/path → forward to <code>-web-tg</code> or <code>-portal-tg</code>.</li>
+  </ul>
 
----
+  <hr />
 
-### 2) Convert Fixed Rule → Weighted Target Groups
-**Goal:** Forward to both prod1 & prod2 target groups with adjustable weights.
+  <h3>2) Convert Fixed Rule → Weighted Target Groups</h3>
+  <p><strong>Goal:</strong> Forward to both prod1 &amp; prod2 target groups with adjustable weights.</p>
 
-**Example target groups:**
-- `hankooktire-us-prd-<web|portal>-01-tg` (prod1)
-- `hankooktire-us-prd-<web|portal>-02-tg` (prod2)
+  <p><strong>Example target groups:</strong></p>
+  <ul>
+    <li><code>hankooktire-us-prd-&lt;web|portal&gt;-01-tg</code> (prod1)</li>
+    <li><code>hankooktire-us-prd-&lt;web|portal&gt;-02-tg</code> (prod2)</li>
+  </ul>
 
-**How:**
-1. Edit the rule.
-2. Choose **Forward to → Weighted target groups**.
-3. Add both TGs with initial weights:
-   - `...-01-tg` → **100**
-   - `...-02-tg` → **0**
-4. Save.
+  <p><strong>How:</strong></p>
+  <ol>
+    <li>Edit the rule.</li>
+    <li>Choose <strong>Forward to → Weighted target groups</strong>.</li>
+    <li>Add both TGs with initial weights:
+      <ul>
+        <li><code>...-01-tg</code> → <strong>100</strong></li>
+        <li><code>...-02-tg</code> → <strong>0</strong></li>
+      </ul>
+    </li>
+    <li>Save.</li>
+  </ol>
 
----
+  <hr />
 
-### 3) Validate 100% on prod1
-- All HTTPS traffic should hit **prod1**.
-- **prod2** is idle and safe to deploy.
-- Deploy to prod2 (`...-02-tg` instances).
+  <h3>3) Validate 100% on prod1</h3>
+  <ul>
+    <li>All HTTPS traffic should hit <strong>prod1</strong>.</li>
+    <li><strong>prod2</strong> is idle and safe to deploy.</li>
+    <li>Deploy to prod2 (<code>...-02-tg</code> instances).</li>
+  </ul>
 
----
+  <hr />
 
-### 4) Gradual Traffic Shift to prod2
-1. Return to the Listener rule.
-2. Adjust weights through stages, testing at each step:
-   - 90/10 → 75/25 → 50/50 → 25/75 → 0/100 (or your chosen cadence).
-3. Validate app behavior each step.
-4. Monitor **CloudWatch** metrics (TG health, latency, 4xx/5xx).
+  <h3>4) Gradual Traffic Shift to prod2</h3>
+  <ol>
+    <li>Return to the Listener rule.</li>
+    <li>Adjust weights through stages, testing at each step:
+      <ul>
+        <li>90/10 → 75/25 → 50/50 → 25/75 → 0/100 (or your chosen cadence).</li>
+      </ul>
+    </li>
+    <li>Validate app behavior each step.</li>
+    <li>Monitor <strong>CloudWatch</strong> metrics (TG health, latency, 4xx/5xx).</li>
+  </ol>
 
----
+  <hr />
 
-### 5) Flip for Next Deployment
-1. Set **prod1 TG** weight to **0**.
-2. Deploy.
-3. Ramp back to **100**.
-4. Monitor, test, and finalize.
+  <h3>5) Flip for Next Deployment</h3>
+  <ol>
+    <li>Set <strong>prod1 TG</strong> weight to <strong>0</strong>.</li>
+    <li>Deploy.</li>
+    <li>Ramp back to <strong>100</strong>.</li>
+    <li>Monitor, test, and finalize.</li>
+  </ol>
 
 </details>
 
 ---
 
-<details markdown="1">
-<summary>📌 Things to Note</summary>
+<details>
+  <summary>📌 Things to Note</summary>
 
-- No additional AWS services or cost changes.
-- Zero-downtime approach: weight `0` stops **new** connections but lets existing ones complete.
-- TG stickiness is **off**, so sessions won’t cling to the old TG during ramp.
-- Our broader deployment process remains unchanged.
-- Coordinate with the team when performing a failover deployment.
-- **Dev ALB** currently doesn’t mirror this setup:
-  - Best practice: replicate weighted rules in **dev** and trial there first.
+  <ul>
+    <li>No additional AWS services or cost changes.</li>
+    <li>Zero-downtime approach: weight <code>0</code> stops <strong>new</strong> connections but lets existing ones complete.</li>
+    <li>TG stickiness is <strong>off</strong>, so sessions won’t cling to the old TG during ramp.</li>
+    <li>Our broader deployment process remains unchanged.</li>
+    <li>Coordinate with the team when performing a failover deployment.</li>
+    <li><strong>Dev ALB</strong> currently doesn’t mirror this setup:
+      <ul>
+        <li>Best practice: replicate weighted rules in <strong>dev</strong> and trial there first.</li>
+      </ul>
+    </li>
+  </ul>
 
 </details>
