@@ -136,6 +136,16 @@ h1:hover, h2:hover, h3:hover {
   }
   pre { padding: calc(var(--space) + 0.25rem); }
 
+  /* Code blocks inside collapsibles use hk-black */
+  details pre,
+  details code {
+    background-color: var(--hk-black) !important;
+    color: #e6e6e6 !important;
+  }
+  details pre code {
+    background-color: transparent !important;
+  }
+
   /* Tables */
   table { border-collapse: collapse; }
   th, td { border: 1px solid #444; padding: 0.5rem 0.6rem; }
