@@ -130,6 +130,7 @@ h1:hover, h2:hover, h3:hover {
   /* Code blocks & inline code */
   pre, code {
     background: var(--hk-black) !important;
+    border: none !important; /* remove white border */
     border-radius: var(--radius);
     color: #e6e6e6 !important;
   }
@@ -137,7 +138,7 @@ h1:hover, h2:hover, h3:hover {
   pre code { background-color: transparent !important; }
 
   /* Brighter syntax highlighting */
-  /* Keyword (e.g., function, return) */
+  /* Keywords */
   .highlight .k,
   .highlight .kd,
   .highlight .kn,
@@ -147,21 +148,18 @@ h1:hover, h2:hover, h3:hover {
     color: #ff7f50; /* Coral orange */
     font-weight: 600;
   }
-
   /* Strings */
   .highlight .s,
   .highlight .s1,
   .highlight .s2 {
     color: #90ee90; /* Light green */
   }
-
   /* Numbers */
   .highlight .m,
   .highlight .mi,
   .highlight .mf {
     color: #ffa500; /* Bright orange */
   }
-
   /* Comments */
   .highlight .c,
   .highlight .cm,
@@ -169,10 +167,16 @@ h1:hover, h2:hover, h3:hover {
     color: #9acd32; /* Yellow-green */
     font-style: italic;
   }
-
-  /* Functions and names */
+  /* Functions */
   .highlight .nf {
     color: #1e90ff; /* Dodger blue */
+  }
+  /* Parameters / options / generic names (-la fix) */
+  .highlight .n,
+  .highlight .na,
+  .highlight .nb,
+  .highlight .bp {
+    color: #66ccff; /* Bright cyan-blue */
   }
 
   /* Tables */
