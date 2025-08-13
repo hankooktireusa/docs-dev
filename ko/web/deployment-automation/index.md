@@ -21,9 +21,9 @@ permalink: /ko/web/deployment-automation/
 2. 다음 경로에 압축 해제:
     C:\scripts\deployment-automation
 3. PowerShell에서 실행:
-```powershell
+~~~powershell
 .\main.ps1
-```
+~~~
 
 전체 설정 및 사용 방법은 ZIP 묶음 안의 **README.md**를 참고하세요.
 
@@ -44,7 +44,7 @@ permalink: /ko/web/deployment-automation/
 ---
 
 ## 📁 스크립트 구조 (ZIP 포함)
-```yaml
+~~~yaml
 deployment-automation/
 ├── config.ps1                           # 공통 경로, 세션명, SSH 호스트 키
 ├── main.ps1                             # 전체 배포 자동화 진입점
@@ -66,12 +66,12 @@ deployment-automation/
     ├── switch-datasource-server.ps1
     ├── switch-sap-properties.ps1
     └── switch-wsdl-info.ps1
-```
+~~~
 
 ---
 
 ## 🧭 배포 흐름 개요
-```
+~~~
           ┌───────────────┐
           │  Select App   │
           └───────┬───────┘
@@ -127,7 +127,7 @@ deployment-automation/
      │ Revert Configs to LOCAL   │
      │ Close open PuTTY sessions │
      └───────────────────────────┘
-```
+~~~
 
 ---
 
