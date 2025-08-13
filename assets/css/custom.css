@@ -292,3 +292,6 @@ details > summary:focus {
 
 /* (Keep this: ensures code inside blocks stays transparent) */
 pre code { background: transparent !important; }
+
+/* Ensure <details> content is hidden when not open (belt & suspenders) */
+details:not([open]) > *:not(summary) { display: none !important; }

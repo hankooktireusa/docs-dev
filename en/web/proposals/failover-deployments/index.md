@@ -23,9 +23,8 @@ Weighted ALB target group routing to enable zero-downtime **prod1 ↔ prod2** cu
 
 ---
 
-<details>
-  <summary>🛠 STEP-BY-STEP PLAN (AWS Console)</summary>
-  <div markdown="1">
+<details markdown="1">
+<summary>🛠 STEP-BY-STEP PLAN (AWS Console)</summary>
 
 ### 1) Inspect Current Listener Rules
 - AWS Console → **EC2 → Load Balancers**
@@ -73,14 +72,12 @@ Weighted ALB target group routing to enable zero-downtime **prod1 ↔ prod2** cu
 3. Ramp back to **100**.
 4. Monitor, test, and finalize.
 
-  </div>
 </details>
 
 ---
 
-<details>
-  <summary>📌 Things to Note</summary>
-  <div markdown="1">
+<details markdown="1">
+<summary>📌 Things to Note</summary>
 
 - No additional AWS services or cost changes.
 - Zero-downtime approach: weight `0` stops **new** connections but lets existing ones complete.
@@ -90,5 +87,4 @@ Weighted ALB target group routing to enable zero-downtime **prod1 ↔ prod2** cu
 - **Dev ALB** currently doesn’t mirror this setup:
   - Best practice: replicate weighted rules in **dev** and trial there first.
 
-  </div>
 </details>
