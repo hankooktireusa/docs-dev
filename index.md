@@ -20,3 +20,12 @@ echo "hello from root index.md"
 - [nest1 test page](./nest1/test.html)
 - [nest2 index](./nest1/nest2/)
 - [nest2 page](./nest1/nest2/page.html)
+
+# Home
+
+Here’s a standard code block outside of any collapsible:
+
+```bash
+echo "hello from root index.md (outside collapsible)"
+ls -la
+```
