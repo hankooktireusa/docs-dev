@@ -134,10 +134,45 @@ h1:hover, h2:hover, h3:hover {
     color: #e6e6e6 !important;
   }
   pre { padding: calc(var(--space) + 0.25rem); }
+  pre code { background-color: transparent !important; }
 
-  /* Ensure nested code inside pre has transparent background */
-  pre code {
-    background-color: transparent !important;
+  /* Brighter syntax highlighting */
+  /* Keyword (e.g., function, return) */
+  .highlight .k,
+  .highlight .kd,
+  .highlight .kn,
+  .highlight .kp,
+  .highlight .kr,
+  .highlight .kt {
+    color: #ff7f50; /* Coral orange */
+    font-weight: 600;
+  }
+
+  /* Strings */
+  .highlight .s,
+  .highlight .s1,
+  .highlight .s2 {
+    color: #90ee90; /* Light green */
+  }
+
+  /* Numbers */
+  .highlight .m,
+  .highlight .mi,
+  .highlight .mf {
+    color: #ffa500; /* Bright orange */
+  }
+
+  /* Comments */
+  .highlight .c,
+  .highlight .cm,
+  .highlight .c1 {
+    color: #9acd32; /* Yellow-green */
+    font-style: italic;
+  }
+
+  /* Functions and names */
+  .highlight .nf {
+    color: #1e90ff; /* Dodger blue */
   }
 
   /* Tables */
@@ -180,7 +215,6 @@ h1:hover, h2:hover, h3:hover {
   }
   details > summary:hover { color: var(--hk-orange); }
   details > *:not(summary) { padding: var(--space) calc(var(--space) + 0.25rem); }
-
   details > summary::-webkit-details-marker { display: inline-block; }
 
   /* Horizontal rule */
