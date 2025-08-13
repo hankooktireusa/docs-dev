@@ -178,6 +178,9 @@ h1:hover, h2:hover, h3:hover {
   }
   details > summary:hover { color: var(--hk-orange); }
   details > *:not(summary) { padding: var(--space) calc(var(--space) + 0.25rem); }
+  
+  /* Ensure the built-in marker shows on WebKit */
+  details > summary::-webkit-details-marker { display: inline-block; }
 
   /* Horizontal rule */
   hr { border: 0; height: 1px; background: #444; }
