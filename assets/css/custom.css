@@ -15,38 +15,37 @@ body { line-height: 1.6; }
 
 /* Make the header container full-width & flush-left (override Minima) */
 .site-header {
-  padding-block: 8px;                 /* add a little vertical breathing room */
+  padding-block: 8px;
 }
-.site-header .wrapper{
+.site-header .wrapper {
   max-width: none !important;
   width: 100%;
   margin: 0 !important;
   padding-left: 12px;
   padding-right: 12px;
 }
-.site-logo{ margin-left: 0; }
-.site-logo img{ display:block; height: 42px; } /* slightly taller & crisp */
+.site-logo { margin-left: 0; }
+.site-logo img { display: block; height: 42px; }
 
 /* ===========================
    Header layout
    =========================== */
-/* Logo hard-left; title+nav centered as a group */
 .header-bar {
   display: grid;
-  grid-template-columns: auto 1fr;    /* left logo, center group fills row */
-  align-items: center;                 /* vertical centering within the header */
+  grid-template-columns: auto 1fr;
+  align-items: center;
   padding: 0 16px;
-  min-height: 64px;                    /* ensures consistent header height */
+  min-height: 64px;
 }
 
 .site-logo { justify-self: start; }
 
 .header-center {
-  justify-self: center;                /* center the whole group horizontally */
+  justify-self: center;
   display: flex;
-  align-items: center;                 /* vertically center title + nav */
-  gap: 1.5rem;                         /* space between title text and nav */
-  white-space: nowrap;                 /* keep in one line when possible */
+  align-items: center;
+  gap: 1.5rem;
+  white-space: nowrap;
 }
 
 .site-title-text {
@@ -86,10 +85,9 @@ a:hover, a:focus {
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
-a:visited { color: #b44a06; }      /* darker orange for visited */
-a:active  { color: #ff7d2a; }       /* punch on click */
+a:visited { color: #b44a06; }
+a:active  { color: #ff7d2a; }
 
-/* Give headings a subtle HK accent underline on hover */
 h1:hover, h2:hover, h3:hover {
   text-decoration: underline;
   text-decoration-color: var(--hk-orange);
@@ -102,7 +100,7 @@ h1:hover, h2:hover, h3:hover {
    --------------------------- */
 @media (prefers-color-scheme: dark) {
   html, body {
-    background: #2a2a2a !important;   /* charcoal (adjust anytime) */
+    background: #2a2a2a !important;
     color: #e6e6e6 !important;
   }
 
@@ -118,31 +116,27 @@ h1:hover, h2:hover, h3:hover {
 
   /* Header navigation links */
   .site-nav .page-link {
-    color: #ffffff !important;       /* white text */
+    color: #ffffff !important;
   }
   .site-nav .page-link:hover {
-    color: var(--hk-orange) !important; /* HK Orange on hover */
+    color: var(--hk-orange) !important;
   }
 
   /* Links pop on dark within content */
-  a { color:  var(--hk-orange) !important; }
+  a { color: var(--hk-orange) !important; }
   a:visited { color: #ff9f5e; }
   a:hover, a:focus { color: #cf5306; }
 
   /* Code blocks & inline code */
   pre, code {
-    background: #3a3a3a;
+    background: var(--hk-black) !important;
     border-radius: var(--radius);
+    color: #e6e6e6 !important;
   }
   pre { padding: calc(var(--space) + 0.25rem); }
 
-  /* Code blocks inside collapsibles use hk-black */
-  details pre,
-  details code {
-    background-color: var(--hk-black) !important;
-    color: #e6e6e6 !important;
-  }
-  details pre code {
+  /* Ensure nested code inside pre has transparent background */
+  pre code {
     background-color: transparent !important;
   }
 
@@ -174,10 +168,8 @@ h1:hover, h2:hover, h3:hover {
   }
   details > summary {
     cursor: pointer;
-    /* restore the arrow */
     list-style: revert;
     display: list-item;
-
     padding: var(--space) calc(var(--space) + 0.25rem);
     color: #fff;
     font-weight: 600;
@@ -188,8 +180,7 @@ h1:hover, h2:hover, h3:hover {
   }
   details > summary:hover { color: var(--hk-orange); }
   details > *:not(summary) { padding: var(--space) calc(var(--space) + 0.25rem); }
-  
-  /* Ensure the built-in marker shows on WebKit */
+
   details > summary::-webkit-details-marker { display: inline-block; }
 
   /* Horizontal rule */
