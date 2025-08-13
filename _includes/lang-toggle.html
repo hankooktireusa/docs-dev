@@ -34,3 +34,41 @@ Uses page.url + relative_url to respect baseurl on GitHub Pages.
   .lang-toggle a { text-decoration: none; }
   .lang-toggle a.active { font-weight: 700; text-decoration: underline; }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    try {
+      // Determine current language from the URL path
+      var path = location.pathname || "/";
+      var isKO = path.indexOf("/ko/") === 0 || path === "/ko/";
+      var isEN = path.indexOf("/en/") === 0 || path === "/en/" || (!isKO); // default to EN
+
+      // Grab all header links (Minima uses .site-nav .page-link)
+      var links = document.querySelectorAll(".site-nav .page-link");
+      links.forEach(function(a){
+        var href = a.getAttribute("href") || "";
+
+        // Normalize to absolute path if possible
+        try {
+          href = new URL(href, location.origin).pathname;
+        } catch (e) { /* leave href as-is */ }
+
+        // Hide the root redirect and obvious non-lang items
+        var text = (a.textContent || "").toLowerCase();
+        var isRooty = href === "/" || /root-redirect/.test(text);
+
+        // Language gating
+        var isEnLink = href.indexOf("/en/") === 0 || href === "/en/";
+        var isKoLink = href.indexOf("/ko/") === 0 || href === "/ko/";
+
+        // If we're on EN, hide KO links; if on KO, hide EN links; always hide root
+        if (isRooty || (isEN && isKoLink) || (isKO && isEnLink)) {
+          a.style.display = "none";
+        }
+      });
+    } catch (e) {
+      // fail safe: do nothing if something unexpected happens
+      console.warn("lang-toggle filter skipped:", e);
+    }
+  });
+</script>
