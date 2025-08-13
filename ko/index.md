@@ -4,6 +4,8 @@ title: Home
 permalink: /ko/
 ---
 
+{% include lang-toggle.html %}
+
 # 🧠 IT 부서 지식 베이스
 
 IT 부서의 중앙 문서 허브에 오신 것을 환영합니다.

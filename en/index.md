@@ -4,6 +4,8 @@ title: Home
 permalink: /en/
 ---
 
+{% include lang-toggle.html %}
+
 # 🧠 IT Department Knowledge Base
 
 Welcome to the central documentation hub for the IT department.
