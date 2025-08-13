@@ -295,3 +295,43 @@ div.highlighter-rouge pre code {
   border: 0 !important;
   padding: 0 !important;
 }
+
+/* ===== Fix KO diagram misalignment: force true monospace & no ligatures ===== */
+:root{
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "DejaVu Sans Mono", "Noto Sans Mono",
+          "D2Coding", "Nanum Gothic Coding", monospace;
+}
+
+/* Apply to all code surfaces (Rouge/Minima variants included) */
+pre,
+code,
+kbd,
+samp,
+.highlight,
+.highlight * ,
+div.highlighter-rouge,
+div.highlighter-rouge * ,
+.rouge-code,
+.rouge-gutter {
+  font-family: var(--mono) !important;
+  font-variant-ligatures: none !important;       /* Firefox/Spec */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga" 0, "calt" 0;     /* Chrome/Safari */
+  letter-spacing: 0 !important;
+  white-space: pre;                               /* keep exact spacing */
+  line-height: 1.3 !important;                    /* consistent grid for box chars */
+  tab-size: 2;
+}
+
+/* Inline code should be monospace too, but don’t fight block backgrounds */
+:not(pre) > code {
+  font-family: var(--mono) !important;
+  font-variant-ligatures: none !important;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* Safety: ensure code inside blocks stays transparent (wrapper gives bg) */
+pre code { background: transparent !important; }
+
