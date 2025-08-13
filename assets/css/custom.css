@@ -128,9 +128,10 @@ h1:hover, h2:hover, h3:hover {
   a:hover, a:focus { color: #cf5306; }
 
   /* Code blocks & inline code */
-  pre, code {
+  pre, code, pre code {
     background: var(--hk-black) !important;
-    border: none !important; /* remove white border */
+    border: none !important;          /* Remove white borders */
+    box-shadow: none !important;      /* Remove funky white corners */
     border-radius: var(--radius);
     color: #e6e6e6 !important;
   }
@@ -145,38 +146,43 @@ h1:hover, h2:hover, h3:hover {
   .highlight .kp,
   .highlight .kr,
   .highlight .kt {
-    color: #ff7f50; /* Coral orange */
+    color: #ff7f50 !important; /* Coral orange */
     font-weight: 600;
   }
   /* Strings */
   .highlight .s,
   .highlight .s1,
   .highlight .s2 {
-    color: #90ee90; /* Light green */
+    color: #90ee90 !important; /* Light green */
   }
   /* Numbers */
   .highlight .m,
   .highlight .mi,
   .highlight .mf {
-    color: #ffa500; /* Bright orange */
+    color: #ffa500 !important; /* Bright orange */
   }
   /* Comments */
   .highlight .c,
   .highlight .cm,
   .highlight .c1 {
-    color: #9acd32; /* Yellow-green */
+    color: #9acd32 !important; /* Yellow-green */
     font-style: italic;
   }
   /* Functions */
   .highlight .nf {
-    color: #1e90ff; /* Dodger blue */
+    color: #1e90ff !important; /* Dodger blue */
   }
   /* Parameters / options / generic names (-la fix) */
   .highlight .n,
   .highlight .na,
   .highlight .nb,
   .highlight .bp {
-    color: #66ccff; /* Bright cyan-blue */
+    color: #66ccff !important; /* Bright cyan-blue */
+  }
+  /* Operators & punctuation (covering -la) */
+  .highlight .o,
+  .highlight .p {
+    color: #66ccff !important; /* Bright cyan-blue */
   }
 
   /* Tables */
