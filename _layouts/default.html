@@ -44,13 +44,6 @@
     {%- assign _home = "/" | append: _lang | append: "/" -%}
     {%- assign _prefix = _home -%}
 
-    <!-- Build a list of index pages inside the SAME language folder -->
-    {%- assign _candidates = site.pages -%}
-    {%- assign _candidates = _candidates | where_exp: "p", "p.url and p.name and p.name != ''" -%}
-    {%- assign _candidates = _candidates | where_exp: "p", "(p.url | replace_first: _prefix, '') != p.url" -%}
-    {%- assign _candidates = _candidates | where_exp: "p", "p.name == 'index.md' or p.name == 'index.html'" -%}
-    {%- assign _candidates = _candidates | sort: "url" -%}
-
     <header class="site-header" role="banner">
       <div class="wrapper header-bar">
 
@@ -74,20 +67,24 @@
               <!-- Always show Home for the current language -->
               <a class="page-link" href="{{ _home | relative_url }}">Home</a>
 
-              <!-- Add immediate child index pages under the same language root -->
-              {%- for p in _candidates -%}
-                {%- assign rel = p.url | remove_first: _prefix -%}
-                {%- assign parts = rel | split: "/" -%}
-                {%- comment -%}
-                  parts examples:
-                  '/en/web/'            -> ['web', '']
-                  '/en/tools/'          -> ['tools', '']
-                  '/en/web/proposals/'  -> ['web','proposals','']
-                  We only want immediate children: size <= 2
-                {%- endcomment -%}
-                {%- if parts.size <= 2 and p.url != _home -%}
-                  {%- assign label = parts[0] | replace: '-', ' ' | capitalize -%}
-                  <a class="page-link" href="{{ p.url | relative_url }}">{{ label }}</a>
+              {%- comment -%}
+                Build links to immediate child index pages under the same language root.
+                We avoid where_exp for GitHub Pages compatibility.
+              {%- endcomment -%}
+              {%- assign _seen = "" -%}
+              {%- for p in site.pages -%}
+                {%- if p.url and p.name and (p.name == "index.md" or p.name == "index.html") -%}
+                  {%- if p.url != _home and p.url contains _prefix -%}
+                    {%- assign rel = p.url | remove_first: _prefix -%}
+                    {%- assign parts = rel | split: "/" -%}
+                    {%- if parts.size <= 2 and parts[0] != "" -%}
+                      {%- assign label = parts[0] | replace: "-", " " | capitalize -%}
+                      {%- unless _seen contains "|" | append: label | append: "|" -%}
+                        <a class="page-link" href="{{ p.url | relative_url }}">{{ label }}</a>
+                        {%- assign _seen = _seen | append: "|" | append: label | append: "|" -%}
+                      {%- endunless -%}
+                    {%- endif -%}
+                  {%- endif -%}
                 {%- endif -%}
               {%- endfor -%}
             </div>
