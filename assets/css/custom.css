@@ -1,73 +1,113 @@
-/* ===== Base Styles ===== */
-:root { color-scheme: dark light; }
+/* ===========================
+   Hankook palette + helpers
+   =========================== */
+:root {
+  --hk-orange: #ec6608;
+  --hk-black:  #000000;
+  --hk-gray1:  #9a9b9c;
 
-body {
-  line-height: 1.6;
+  /* tweakables */
+  --radius: 8px;
+  --space:  0.75rem;
 }
 
-/* ===== Link styles (light mode) ===== */
+body { line-height: 1.6; }
+
+/* ---------------------------
+   Link styling (light mode)
+   --------------------------- */
 a {
-  color: #0066ff;        /* bright blue for normal links */
-  text-decoration: none; /* remove underline by default */
+  color: var(--hk-orange);
+  text-decoration: none;
 }
-
-a:visited {
-  color: #800080;        /* purple for visited links */
-}
-
-a:hover,
-a:focus {
-  color: #0044aa;        /* darker blue on hover */
+a:hover, a:focus {
   text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+a:visited { color: #b44a06; }      /* darker orange for visited */
+a:active  { color: #ff7d2a; }       /* punch on click */
+
+/* Give headings a subtle HK accent underline on hover */
+h1:hover, h2:hover, h3:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--hk-orange);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
 }
 
-a:active {
-  color: #ff6600;        /* orange when clicking */
-}
-
-/* ===== Link styles (dark mode) ===== */
+/* ---------------------------
+   Dark mode
+   --------------------------- */
 @media (prefers-color-scheme: dark) {
   html, body {
-    background: #2a2a2a !important;
+    background: #2a2a2a !important;   /* charcoal (adjust anytime) */
     color: #e6e6e6 !important;
   }
 
-  a {
-    color: #66ccff;      /* lighter blue for dark backgrounds */
-  }
-
-  a:visited {
-    color: #cc99ff;      /* light purple visited links */
-  }
-
-  a:hover,
-  a:focus {
-    color: #99ddff;      /* brighter blue hover */
-    text-decoration: underline;
-  }
-
-  a:active {
-    color: #ff9933;      /* lighter orange active */
-  }
-
+  /* Header / footer blend with page */
   .site-header, .site-footer {
     background: #2a2a2a;
-    border-color: #333;
+    border-color: #444;
   }
+  .site-title, .site-title:visited { color: #e6e6e6 !important; }
+  .site-title:hover { color: var(--hk-orange) !important; }
 
-  .site-title, .site-title:visited {
-    color: #e6e6e6 !important;
-  }
+  /* Links pop on dark */
+  a { color: #ff9f5e; }               /* lightened HK Orange */
+  a:visited { color: #d48e72; }
+  a:hover, a:focus { color: #ffc299; }
 
-  .page-link {
-    color: #e6e6e6 !important;
-  }
-
+  /* Code blocks & inline code */
   pre, code {
     background: #3a3a3a;
+    border-radius: var(--radius);
+  }
+  pre { padding: calc(var(--space) + 0.25rem); }
+
+  /* Tables */
+  table { border-collapse: collapse; }
+  th, td { border: 1px solid #444; padding: 0.5rem 0.6rem; }
+  th { background: #363636; color: #f0f0f0; }
+  thead th { border-bottom: 2px solid var(--hk-orange); }
+
+  /* Blockquotes with HK accent */
+  blockquote {
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    border-left: 4px solid var(--hk-orange);
+    background: #343434;
+    color: #eaeaea;
   }
 
+  /* Collapsibles */
   details {
-    color: inherit;
+    margin: 1rem 0;
+    border: 1px solid #444;
+    border-radius: var(--radius);
+    background: #343434;
   }
+  details[open] {
+    border-color: var(--hk-orange);
+    box-shadow: 0 0 0 1px rgba(236,102,8,0.15);
+  }
+  details > summary {
+    cursor: pointer;
+    list-style: none;       /* keep triangle but style text */
+    padding: var(--space) calc(var(--space) + 0.25rem);
+    color: #fff;
+    font-weight: 600;
+    background: linear-gradient(180deg, #383838, #323232);
+    border-bottom: 1px solid #3f3f3f;
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+  }
+  details > summary:hover { color: var(--hk-orange); }
+  details > *:not(summary) { padding: var(--space) calc(var(--space) + 0.25rem); }
+
+  /* Horizontal rule */
+  hr { border: 0; height: 1px; background: #444; }
 }
+
+/* Ensure summary marker spacing is nice across browsers */
+summary { display: list-item; }
