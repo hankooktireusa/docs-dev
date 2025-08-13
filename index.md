@@ -1,21 +1,22 @@
 ---
-layout: default
 title: Home
-permalink: /
 ---
 
-{% include lang-toggle.html %}
+# docs-dev — Home
 
-<!-- JS redirect (respects baseurl) -->
-<script>window.location.replace('{{ "/en/" | relative_url }}');</script>
+<details>
+  <summary>Expand: Root collapsible</summary>
 
-<!-- Meta refresh fallback -->
-<meta http-equiv="refresh" content="0; url={{ "/en/" | relative_url }}">
+This is the root-level collapsible demo.
 
-# IT Docs
+```bash
+echo "hello from root index.md"
+```
 
-If you aren’t redirected automatically:
-- Go to **English** → [{{ "/en/" | relative_url }}]({{ "/en/" | relative_url }})
-- Go to **한국어** → [{{ "/ko/" | relative_url }}]({{ "/ko/" | relative_url }})
+</details>
 
-> Tip: once everything’s stable, you can remove this content block entirely and keep only the redirects.
+## 📂 Sections
+- [nest1 index](./nest1/)
+- [nest1 test page](./nest1/test.html)
+- [nest2 index](./nest1/nest2/)
+- [nest2 page](./nest1/nest2/page.html)
