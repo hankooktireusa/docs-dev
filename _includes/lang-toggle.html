@@ -37,42 +37,34 @@ Uses page.url + relative_url to respect baseurl on GitHub Pages.
 
 <script>
   (function(){
-    // Make paths comparable even when a baseurl (e.g., /docs-dev) is used
-    var BASE = "{{ site.baseurl | default: '' }}";
+    // Current language from front matter (set via _config.yml defaults)
+    var LANG = '{{ page.lang | default: "en" }}';
+    var BASE = '{{ site.baseurl | default: "" }}';
 
-    function toPath(href){
-      try { return new URL(href, location.origin).pathname; }
-      catch(e){ return href || ""; }
+    function normalize(href){
+      var p;
+      try { p = new URL(href, location.origin).pathname; }
+      catch(e){ p = href || ""; }
+      if (BASE && p.indexOf(BASE) === 0) p = p.slice(BASE.length);
+      if (p.charAt(0) !== '/') p = '/' + p; // ensure leading slash
+      return p;
     }
-    function stripBase(p){
-      // Ensure BASE is at the start before stripping
-      return (BASE && p.indexOf(BASE) === 0) ? p.slice(BASE.length) : p;
-    }
 
-    var currentPath = stripBase(toPath(location.pathname));
-
-    // Language of current page (default EN if not KO)
-    var isKO = /^\/ko(\/|$)/.test(currentPath);
-    var isEN = /^\/en(\/|$)/.test(currentPath) || !isKO;
-
-    // Find header links (Minima uses .page-link)
-    var links = document.querySelectorAll("header .page-link");
+    var links = document.querySelectorAll('header .page-link');
     links.forEach(function(a){
-      var href = stripBase(toPath(a.getAttribute("href") || ""));
-      var text = (a.textContent || "").toLowerCase();
+      var href = normalize(a.getAttribute('href') || '');
+      var text = (a.textContent || '');
 
-      // Hide root redirect or anything obviously "rooty"
-      var isRooty = href === "/" || href === "/index.html" || /root-redirect/.test(text);
+      var isRooty = href === '/' || href === '/index.html' || /root-redirect/i.test(text);
+      var isEnLink = href === '/en/' || href.indexOf('/en/') === 0;
+      var isKoLink = href === '/ko/' || href.indexOf('/ko/') === 0;
 
-      // Classify link language
-      var isEnLink = /^\/en(\/|$)/.test(href);
-      var isKoLink = /^\/ko(\/|$)/.test(href);
-
-      // Hide cross-language links and root redirect
-      if (isRooty || (isEN && isKoLink) || (isKO && isEnLink)) {
-        a.style.display = "none";
-      }
+      // Always hide root redirect; then hide opposite-language links
+      if (isRooty) { a.style.display = 'none'; return; }
+      if (LANG === 'en' && isKoLink) a.style.display = 'none';
+      if (LANG === 'ko' && isEnLink) a.style.display = 'none';
     });
   })();
 </script>
+
 
