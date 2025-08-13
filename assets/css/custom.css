@@ -13,6 +13,27 @@
 
 body { line-height: 1.6; }
 
+/* ===== Header layout: push logo/title to far left, nav to right (all modes) ===== */
+.site-header .wrapper {
+  max-width: none;       /* cancel Minima's centered width */
+  margin: 0;             /* no auto-centering */
+  padding: 0 16px;       /* small breathing room from viewport edge */
+  display: flex; 
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-title {
+  display: flex;         /* keep logo + text side-by-side */
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-nav {
+  margin-left: auto;     /* push nav to the right edge */
+}
+
+
 /* ---------------------------
    Link styling (light mode)
    --------------------------- */
