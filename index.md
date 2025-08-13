@@ -4,7 +4,7 @@ title: Home
 
 # docs-dev — Home
 
-<details>
+<details markdown="1">
   <summary>Expand: Root collapsible</summary>
 
 This is the root-level collapsible demo.
