@@ -23,7 +23,12 @@ Weighted ALB target group routing to enable zero-downtime **prod1 ↔ prod2** cu
 
 ---
 
-{% capture plan %}
+<!-- Accordion 1 -->
+<div class="hk-accordion">
+  <input id="acc-plan" type="checkbox" class="hk-acc-trigger" />
+  <label for="acc-plan" class="hk-acc-summary">🛠 STEP-BY-STEP PLAN (AWS Console)</label>
+  <div class="hk-acc-body" markdown="1">
+
 ### 1) Inspect Current Listener Rules
 - AWS Console → **EC2 → Load Balancers**
 - Select the **ALB** → **Listeners** tab → click **:443**
@@ -69,12 +74,18 @@ Weighted ALB target group routing to enable zero-downtime **prod1 ↔ prod2** cu
 2. Deploy.
 3. Ramp back to **100**.
 4. Monitor, test, and finalize.
-{% endcapture %}
-{% include accordion.html id="acc-plan" title="🛠 STEP-BY-STEP PLAN (AWS Console)" content=plan %}
+
+  </div>
+</div>
 
 ---
 
-{% capture notes %}
+<!-- Accordion 2 -->
+<div class="hk-accordion">
+  <input id="acc-notes" type="checkbox" class="hk-acc-trigger" />
+  <label for="acc-notes" class="hk-acc-summary">📌 Things to Note</label>
+  <div class="hk-acc-body" markdown="1">
+
 - No additional AWS services or cost changes.
 - Zero-downtime approach: weight `0` stops **new** connections but lets existing ones complete.
 - TG stickiness is **off**, so sessions won’t cling to the old TG during ramp.
@@ -82,5 +93,6 @@ Weighted ALB target group routing to enable zero-downtime **prod1 ↔ prod2** cu
 - Coordinate with the team when performing a failover deployment.
 - **Dev ALB** currently doesn’t mirror this setup:
   - Best practice: replicate weighted rules in **dev** and trial there first.
-{% endcapture %}
-{% include accordion.html id="acc-notes" title="📌 Things to Note" content=notes %}
+
+  </div>
+</div>
