@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🧠 IT Department Knowledge Base
+title: Home
 permalink: /en/
 ---
 
