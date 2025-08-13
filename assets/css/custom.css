@@ -13,6 +13,17 @@
 
 body { line-height: 1.6; }
 
+/* Make the header container full-width & flush-left (override Minima) */
+.site-header .wrapper{
+  max-width: none !important;
+  width: 100%;
+  margin: 0 !important;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.site-logo{ margin-left: 0; }
+.site-logo img{ display:block; }
+
 /* ===========================
    Header layout
    =========================== */
