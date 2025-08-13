@@ -70,8 +70,7 @@ Weighted ALB target group routing to enable zero-downtime **prod1 ↔ prod2** cu
 3. Ramp back to **100**.
 4. Monitor, test, and finalize.
 {% endcapture %}
-
-{% include collapse.html title="🛠 STEP-BY-STEP PLAN (AWS Console)" content=plan %}
+{% include accordion.html id="acc-plan" title="🛠 STEP-BY-STEP PLAN (AWS Console)" content=plan %}
 
 ---
 
@@ -84,5 +83,4 @@ Weighted ALB target group routing to enable zero-downtime **prod1 ↔ prod2** cu
 - **Dev ALB** currently doesn’t mirror this setup:
   - Best practice: replicate weighted rules in **dev** and trial there first.
 {% endcapture %}
-
-{% include collapse.html title="📌 Things to Note" content=notes %}
+{% include accordion.html id="acc-notes" title="📌 Things to Note" content=notes %}

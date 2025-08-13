@@ -1,0 +1,7 @@
+<div class="hk-accordion {{ include.class | default: '' }}">
+  <input id="{{ include.id }}" type="checkbox" class="hk-acc-trigger" {% if include.open %}checked{% endif %}>
+  <label for="{{ include.id }}" class="hk-acc-summary">{{ include.title }}</label>
+  <div class="hk-acc-body">
+    {{ include.content | markdownify }}
+  </div>
+</div>

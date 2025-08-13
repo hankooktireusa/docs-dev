@@ -295,3 +295,19 @@ pre code { background: transparent !important; }
 
 /* Ensure <details> content is hidden when not open (belt & suspenders) */
 details:not([open]) > *:not(summary) { display: none !important; }
+
+/* ===== Accessible accordion (replaces <details>/<summary>) ===== */
+.hk-accordion {
+  border: 1px solid #444; border-radius: var(--radius); background: #343434; margin: 1rem 0;
+}
+.hk-acc-trigger { display: none; }
+.hk-acc-summary {
+  display: flex; align-items: center; gap: .5rem;
+  cursor: pointer; user-select: none; padding: var(--space) calc(var(--space) + .25rem);
+  color: #fff; font-weight: 600; background: linear-gradient(180deg,#383838,#323232);
+  border-bottom: 1px solid #3f3f3f; border-top-left-radius: var(--radius); border-top-right-radius: var(--radius);
+}
+.hk-acc-summary::before { content: "▶"; font-size: .9rem; transform: rotate(0deg); transition: transform .15s ease-in-out; }
+.hk-acc-trigger:checked + .hk-acc-summary::before { transform: rotate(90deg); }
+.hk-acc-body { display: none; padding: var(--space) calc(var(--space) + .25rem); }
+.hk-acc-trigger:checked ~ .hk-acc-body { display: block; }
