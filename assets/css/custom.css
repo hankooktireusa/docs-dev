@@ -28,7 +28,7 @@ a:active {
 /* ===== Link styles (dark mode) ===== */
 @media (prefers-color-scheme: dark) {
   html, body {
-    background: #2e2e2e !important;
+    background: #2a2a2a !important;
     color: #e6e6e6 !important;
   }
 
@@ -51,7 +51,7 @@ a:active {
   }
 
   .site-header, .site-footer {
-    background: #2e2e2e;
+    background: #2a2a2a;
     border-color: #333;
   }
 
