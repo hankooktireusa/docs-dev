@@ -1,15 +1,20 @@
 ---
 layout: default
-title: IT Docs (EN)
+title: "🧠 IT Department Knowledge Base"
+lang: en
 permalink: /en/
 ---
 
 {% include lang-toggle.html %}
 
-# 👋 Welcome (English)
+# 🧠 IT Department Knowledge Base
 
-This is the English landing page.  
-Use the toggle above to switch to the Korean mirror.
+Welcome to the central documentation hub for the IT department.
 
-- Example section link (add real ones as you convert):
+## Quick Access
+
+- [Web Team]({{ '/en/web/' | relative_url }})
+  - [Deployment Automation]({{ '/en/web/deployment-automation/' | relative_url }})
   - [Proposals]({{ '/en/web/proposals/' | relative_url }})
+    - [ePortal Roles]({{ '/en/web/proposals/ePortal-roles/' | relative_url }})
+    - [Failover Deployments]({{ '/en/web/proposals/failover-deployments/' | relative_url }})
