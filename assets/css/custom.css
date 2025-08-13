@@ -13,26 +13,44 @@
 
 body { line-height: 1.6; }
 
-/* ===== Header layout: push logo/title to far left, nav to right (all modes) ===== */
-.site-header .wrapper {
-  max-width: none;       /* cancel Minima's centered width */
-  margin: 0;             /* no auto-centering */
-  padding: 0 16px;       /* small breathing room from viewport edge */
-  display: flex; 
+/* ===========================
+   Header layout
+   =========================== */
+/* Logo hard-left; title+nav centered as a group */
+.header-bar {
+  display: grid;
+  grid-template-columns: auto 1fr; /* left logo, center group fills row */
   align-items: center;
-  gap: 1rem;
+  padding: 0 16px;
 }
 
-.site-title {
-  display: flex;         /* keep logo + text side-by-side */
+.site-logo { justify-self: start; }
+
+.header-center {
+  justify-self: center;            /* center the whole group */
+  display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1.5rem;                     /* space between title text and nav */
 }
 
-.site-nav {
-  margin-left: auto;     /* push nav to the right edge */
+.site-title-text {
+  font-size: 1.8rem;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
+/* Keep nav links evenly spaced */
+.site-nav .page-link { margin: 0 0.75rem; }
+
+/* Small screens: stack nicely */
+@media (max-width: 768px) {
+  .header-bar { grid-template-columns: 1fr; }
+  .header-center {
+    justify-self: start;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+}
 
 /* ---------------------------
    Link styling (light mode)
@@ -71,8 +89,10 @@ h1:hover, h2:hover, h3:hover {
     background: #2a2a2a;
     border-color: #444;
   }
-  .site-title, .site-title:visited { color: #e6e6e6 !important; }
-  .site-title:hover { color: var(--hk-orange) !important; }
+
+  /* Title text color + hover */
+  .site-title-text { color: #e6e6e6; }
+  .site-title-text:hover { color: var(--hk-orange); }
 
   /* Header navigation links */
   .site-nav .page-link {
@@ -82,7 +102,7 @@ h1:hover, h2:hover, h3:hover {
     color: var(--hk-orange) !important; /* HK Orange on hover */
   }
 
-  /* Links pop on dark */
+  /* Links pop on dark within content */
   a { color:  var(--hk-orange) !important; }
   a:visited { color: #ff9f5e; }
   a:hover, a:focus { color: #cf5306; }
