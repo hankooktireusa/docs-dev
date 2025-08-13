@@ -26,3 +26,4 @@ This collapsible is kept temporarily to monitor styling and markdown processing.
 echo "Hello from /en/index.md within collapsible"
 ls -la
 ```
+</details>
