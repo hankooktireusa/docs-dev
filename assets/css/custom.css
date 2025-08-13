@@ -53,10 +53,18 @@ h1:hover, h2:hover, h3:hover {
   .site-title, .site-title:visited { color: #e6e6e6 !important; }
   .site-title:hover { color: var(--hk-orange) !important; }
 
+  /* Header navigation links */
+  .site-nav .page-link {
+    color: #ffffff !important;       /* white text */
+  }
+  .site-nav .page-link:hover {
+    color: var(--hk-orange) !important; /* HK Orange on hover */
+  }
+
   /* Links pop on dark */
   a { color: #ff9f5e; }               /* lightened HK Orange */
-  a:visited { color: #d48e72; }
-  a:hover, a:focus { color: #ffc299; }
+  a:visited { color: #b44a06; }
+  a:hover, a:focus { color: #d48e72; }
 
   /* Code blocks & inline code */
   pre, code {
