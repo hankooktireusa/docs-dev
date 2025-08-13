@@ -36,39 +36,43 @@ Uses page.url + relative_url to respect baseurl on GitHub Pages.
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    try {
-      // Determine current language from the URL path
-      var path = location.pathname || "/";
-      var isKO = path.indexOf("/ko/") === 0 || path === "/ko/";
-      var isEN = path.indexOf("/en/") === 0 || path === "/en/" || (!isKO); // default to EN
+  (function(){
+    // Make paths comparable even when a baseurl (e.g., /docs-dev) is used
+    var BASE = "{{ site.baseurl | default: '' }}";
 
-      // Grab all header links (Minima uses .site-nav .page-link)
-      var links = document.querySelectorAll(".site-nav .page-link");
-      links.forEach(function(a){
-        var href = a.getAttribute("href") || "";
-
-        // Normalize to absolute path if possible
-        try {
-          href = new URL(href, location.origin).pathname;
-        } catch (e) { /* leave href as-is */ }
-
-        // Hide the root redirect and obvious non-lang items
-        var text = (a.textContent || "").toLowerCase();
-        var isRooty = href === "/" || /root-redirect/.test(text);
-
-        // Language gating
-        var isEnLink = href.indexOf("/en/") === 0 || href === "/en/";
-        var isKoLink = href.indexOf("/ko/") === 0 || href === "/ko/";
-
-        // If we're on EN, hide KO links; if on KO, hide EN links; always hide root
-        if (isRooty || (isEN && isKoLink) || (isKO && isEnLink)) {
-          a.style.display = "none";
-        }
-      });
-    } catch (e) {
-      // fail safe: do nothing if something unexpected happens
-      console.warn("lang-toggle filter skipped:", e);
+    function toPath(href){
+      try { return new URL(href, location.origin).pathname; }
+      catch(e){ return href || ""; }
     }
-  });
+    function stripBase(p){
+      // Ensure BASE is at the start before stripping
+      return (BASE && p.indexOf(BASE) === 0) ? p.slice(BASE.length) : p;
+    }
+
+    var currentPath = stripBase(toPath(location.pathname));
+
+    // Language of current page (default EN if not KO)
+    var isKO = /^\/ko(\/|$)/.test(currentPath);
+    var isEN = /^\/en(\/|$)/.test(currentPath) || !isKO;
+
+    // Find header links (Minima uses .page-link)
+    var links = document.querySelectorAll("header .page-link");
+    links.forEach(function(a){
+      var href = stripBase(toPath(a.getAttribute("href") || ""));
+      var text = (a.textContent || "").toLowerCase();
+
+      // Hide root redirect or anything obviously "rooty"
+      var isRooty = href === "/" || href === "/index.html" || /root-redirect/.test(text);
+
+      // Classify link language
+      var isEnLink = /^\/en(\/|$)/.test(href);
+      var isKoLink = /^\/ko(\/|$)/.test(href);
+
+      // Hide cross-language links and root redirect
+      if (isRooty || (isEN && isKoLink) || (isKO && isEnLink)) {
+        a.style.display = "none";
+      }
+    });
+  })();
 </script>
+
