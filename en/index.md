@@ -2,6 +2,7 @@
 layout: default
 title: Home
 permalink: /en/
+nav: true
 ---
 
 {% include lang-toggle.html %}

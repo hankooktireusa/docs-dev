@@ -2,6 +2,7 @@
 layout: default
 title: Home
 permalink: /ko/
+nav: true
 ---
 
 {% include lang-toggle.html %}

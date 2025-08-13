@@ -2,6 +2,7 @@
 layout: default
 title: 웹
 permalink: /ko/web/
+nav: true
 ---
 
 {% include lang-toggle.html %}

@@ -2,6 +2,7 @@
 layout: default
 title: Home
 permalink: /
+nav: false
 ---
 
 <!-- Instant redirect (works with baseurl) -->

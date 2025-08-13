@@ -2,6 +2,7 @@
 layout: default
 title: Web
 permalink: /en/web/
+nav: true
 ---
 
 {% include lang-toggle.html %}

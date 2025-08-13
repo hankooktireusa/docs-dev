@@ -4,8 +4,16 @@ theme: minima
 minima:
   skin: dark      # force dark skin
 
-exclude:
-  - index.md
+# Auto-apply front matter to everything under /en and /ko
+defaults:
+  - scope:
+      path: "en"
+    values:
+      lang: "en"
+  - scope:
+      path: "ko"
+    values:
+      lang: "ko"
 
 include:
   - assets/css/custom.css
