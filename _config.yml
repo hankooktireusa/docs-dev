@@ -4,9 +4,8 @@ theme: minima
 minima:
   skin: dark      # force dark skin
 
-# Only these pages appear in the header nav:
-header_pages:
-  - en/index.md   # shows as "Home" (from its front matter title)
+exclude:
+  - index.md
 
 include:
   - assets/css/custom.css
