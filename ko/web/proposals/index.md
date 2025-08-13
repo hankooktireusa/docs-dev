@@ -14,3 +14,5 @@ permalink: /ko/web/proposals/
 
 ## 사용 가능한 제안서
 - [ePortal 역할]({{ '/ko/web/proposals/ePortal-roles/' | relative_url }})
+- [페일오버 배포]({{ '/ko/web/proposals/failover-deployments/' | relative_url }})
+
