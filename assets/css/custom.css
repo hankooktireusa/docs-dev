@@ -1,14 +1,73 @@
+/* ===== Base Styles ===== */
 :root { color-scheme: dark light; }
 
+body {
+  line-height: 1.6;
+}
+
+/* ===== Link styles (light mode) ===== */
+a {
+  color: #0066ff;        /* bright blue for normal links */
+  text-decoration: none; /* remove underline by default */
+}
+
+a:visited {
+  color: #800080;        /* purple for visited links */
+}
+
+a:hover,
+a:focus {
+  color: #0044aa;        /* darker blue on hover */
+  text-decoration: underline;
+}
+
+a:active {
+  color: #ff6600;        /* orange when clicking */
+}
+
+/* ===== Link styles (dark mode) ===== */
 @media (prefers-color-scheme: dark) {
   html, body {
     background: #111 !important;
     color: #e6e6e6 !important;
   }
-  a { color: #9ecbff; }
-  .site-header, .site-footer { background: #111; border-color: #333; }
-  .site-title, .site-title:visited { color: #e6e6e6 !important; }
-  .page-link { color: #e6e6e6 !important; }
-  pre, code { background: #1a1a1a; }
-  details { color: inherit; }
+
+  a {
+    color: #66ccff;      /* lighter blue for dark backgrounds */
+  }
+
+  a:visited {
+    color: #cc99ff;      /* light purple visited links */
+  }
+
+  a:hover,
+  a:focus {
+    color: #99ddff;      /* brighter blue hover */
+    text-decoration: underline;
+  }
+
+  a:active {
+    color: #ff9933;      /* lighter orange active */
+  }
+
+  .site-header, .site-footer {
+    background: #111;
+    border-color: #333;
+  }
+
+  .site-title, .site-title:visited {
+    color: #e6e6e6 !important;
+  }
+
+  .page-link {
+    color: #e6e6e6 !important;
+  }
+
+  pre, code {
+    background: #1a1a1a;
+  }
+
+  details {
+    color: inherit;
+  }
 }
