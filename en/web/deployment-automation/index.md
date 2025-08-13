@@ -44,7 +44,7 @@ For full setup and configuration instructions, refer to the **README.md inside t
 ---
 
 ## 📁 Script Structure (Included in ZIP)
-~~~yaml
+```yaml
 deployment-automation/
 ├── config.ps1                           # Shared paths, session names, and SSH host keys
 ├── main.ps1                             # Main entry point to automate full deployment
@@ -66,7 +66,7 @@ deployment-automation/
     ├── switch-datasource-server.ps1
     ├── switch-sap-properties.ps1
     └── switch-wsdl-info.ps1
-~~~
+```
 
 ---
 
