@@ -8,7 +8,7 @@
     {%- seo -%}
 
     <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
-    <link rel="stylesheet" href="{{ "/assets/css/custom.css?v=0.1" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/custom.css?v=0.2" | relative_url }}">
 
     {%- feed_meta -%}
     {%- if jekyll.environment == 'production' and site.google_analytics -%}
@@ -39,6 +39,23 @@
       .center-block .nav-trigger, .center-block label[for="nav-trigger"]{ display:none; }
     </style>
   </head>
+  <script>
+    document.addEventListener('click', function (e) {
+      const label = e.target.closest('.hk-acc-summary');
+      if (!label) return;
+      const id = label.getAttribute('for');
+      const input = document.getElementById(id);
+      if (!input) return;
+      input.checked = !input.checked;
+      // Update ARIA and show/hide body explicitly as a fallback
+      label.setAttribute('aria-expanded', String(input.checked));
+      const body = label.nextElementSibling;
+      if (body && body.classList.contains('hk-acc-body')) {
+        body.style.display = input.checked ? 'block' : 'none';
+      }
+    });
+  </script>
+
   <body>
     {%- assign _lang = page.lang | default: site.lang | default: "en" -%}
     {%- assign _home = "/" | append: _lang | append: "/" -%}
