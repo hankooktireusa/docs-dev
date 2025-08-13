@@ -129,7 +129,7 @@ h1:hover, h2:hover, h3:hover {
   a:visited { color: #ff9f5e; }
   a:hover, a:focus { color: #cf5306; }
 
-  /* Code blocks & inline code */
+  /* Code blocks & inline code (baseline; overridden below with !important) */
   pre, code {
     background: #3a3a3a;
     border-radius: var(--radius);
@@ -182,3 +182,94 @@ h1:hover, h2:hover, h3:hover {
 
 /* Ensure summary marker spacing is nice across browsers */
 summary { display: list-item; }
+
+/* =========================================
+   Force BLACK code windows (block + inline)
+   Works with Rouge/Minima on GitHub Pages
+   ========================================= */
+:root{
+  --code-bg: #0b0b0c;
+  --code-inline-bg: #141518;
+  --code-text: #e6e6e6;
+  --code-border: #232428;
+  --code-radius: 8px;
+}
+
+/* Block wrappers Minima/Rouge use */
+.highlight,
+figure.highlight,
+div.highlighter-rouge,
+pre.highlight {
+  background: var(--code-bg) !important;
+  color: var(--code-text) !important;
+  border: 1px solid var(--code-border) !important;
+  border-radius: var(--code-radius) !important;
+  box-shadow: none !important;
+}
+
+/* Actual <pre> area */
+pre,
+.highlight pre,
+div.highlighter-rouge pre {
+  background: transparent !important;        /* wrapper provides the bg */
+  color: var(--code-text) !important;
+  margin: 0 !important;
+  padding: 0.9rem 1rem !important;
+  overflow: auto !important;
+  border: 0 !important;
+}
+
+/* Avoid double background on nested <code> */
+pre code,
+.highlight code,
+div.highlighter-rouge code {
+  background: transparent !important;
+  color: inherit !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+/* Inline code */
+code,
+tt,
+code.highlighter-rouge {
+  background: var(--code-inline-bg) !important;
+  color: var(--code-text) !important;
+  border: 1px solid var(--code-border) !important;
+  border-radius: 6px !important;
+  padding: .12em .35em !important;
+}
+
+/* Line-number table variant (Rouge) */
+.rouge-table,
+.rouge-table td,
+.rouge-table th,
+.highlight table,
+.highlight td,
+.highlight th {
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--code-text) !important;
+}
+.rouge-gutter,
+.highlight .gutter {
+  color: #8b949e !important;
+  border-right: 1px solid var(--code-border) !important;
+  padding: 0.9rem 0.75rem 0.9rem 1rem !important;
+  user-select: none;
+}
+.rouge-code,
+.highlight .code {
+  padding: 0.9rem 1rem !important;
+}
+
+/* Minimal token colors for readability */
+.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs { color:#8b949e !important; font-style: italic; } /* comments */
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt,
+.highlight .o, .highlight .ow { color:#ff7b72 !important; } /* keywords/operators */
+.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd,
+.highlight .s2, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx, .highlight .sr,
+.highlight .s1, .highlight .ss { color:#a5d6ff !important; } /* strings */
+.highlight .na, .highlight .nt, .highlight .nc, .highlight .nn, .highlight .no { color:#d2a8ff !important; } /* names/tags/types */
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo { color:#79c0ff !important; } /* numbers */
+.highlight .p { color:#c9d1d9 !important; } /* punctuation */

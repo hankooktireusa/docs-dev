@@ -21,9 +21,9 @@ To run this deployment automation locally:
 2. Extract it to:
     C:\scripts\deployment-automation
 3. Open PowerShell and run:
-~~~powershell
+```powershell
 .\main.ps1
-~~~
+```
 
 For full setup and configuration instructions, refer to the **README.md inside the ZIP bundle**.
 
@@ -71,7 +71,7 @@ deployment-automation/
 ---
 
 ## 🧭 Deployment Flow Overview
-~~~
+```
           ┌───────────────┐
           │  Select App   │
           └───────┬───────┘
@@ -127,7 +127,7 @@ deployment-automation/
      │ Revert Configs to LOCAL   │
      │ Close open PuTTY sessions │
      └───────────────────────────┘
-~~~
+```
 
 ---
 
