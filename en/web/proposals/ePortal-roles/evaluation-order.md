@@ -27,7 +27,7 @@ This document explains how user permissions are determined in the new Role-Based
 
 ---
 
-## 1. 🧱 Role Assignment
+## 1. 🧱 Role Assignment {#role-assignment}
 
 Each user is assigned one or more roles, which define:
 
@@ -42,7 +42,7 @@ Each user is assigned one or more roles, which define:
 
 ---
 
-## 2. 🧭 Role Scoping (Optional)
+## 2. 🧭 Role Scoping (Optional) {#role-scoping-optional}
 
 Roles may be scoped to narrow their effect:
 
@@ -54,7 +54,7 @@ Roles may be scoped to narrow their effect:
 
 ---
 
-## 3. ➕ Role Combination and Merging
+## 3. ➕ Role Combination and Merging {#role-combination-and-merging}
 
 When users have multiple roles:
 
@@ -66,7 +66,7 @@ If one role grants `A, S` on *Order Submission* and another grants `U`, the resu
 
 ---
 
-## 4. 🚫 Restrictive Roles (Modifiers)
+## 4. 🚫 Restrictive Roles (Modifiers) {#restrictive-roles-modifiers}
 
 Some roles act to **remove** privileges rather than add them.
 
@@ -77,7 +77,7 @@ Some roles act to **remove** privileges rather than add them.
 
 ---
 
-## 5. 🛠️ Direct Privilege Overrides (Edge Cases)
+## 5. 🛠️ Direct Privilege Overrides (Edge Cases) {#direct-privilege-overrides-edge-cases}
 
 In rare exceptions:
 
@@ -88,12 +88,12 @@ In rare exceptions:
 
 ---
 
-## 🔁 Summary Table
+## 🔁 Summary Table {#summary-table}
 
-| Level               | Description                                 | Example                                                      |
-|---------------------|---------------------------------------------|--------------------------------------------------------------|
-| **Base Role**       | Main source of permissions/privileges       | `Order – WH Order Submission (A, S, U)`                      |
-| **Scoped Role**     | Role limited by corporation/segment/channel | `Warranty – Create Warranty (CA only)`                       |
-| **Role Merging**    | Combines all roles for cumulative access    | `Order + Status + Warranty`                                  |
-| **Restrictive Role**| Reduces privileges granted by base roles    | `No Pricing` removes `U`, `L`                                |
-| **Direct Overrides**| Final edge-case adjustment at user level    | Add `U` to *Stock Report* for one user only                   |
+| Level                | Description                                 | Example                                                     |
+|----------------------|---------------------------------------------|-------------------------------------------------------------|
+| **Base Role**        | Main source of permissions/privileges       | `Order – WH Order Submission (A, S, U)`                     |
+| **Scoped Role**      | Role limited by corporation/segment/channel | `Warranty – Create Warranty (CA only)`                      |
+| **Role Merging**     | Combines all roles for cumulative access    | `Order + Status + Warranty`                                 |
+| **Restrictive Role** | Reduces privileges granted by base roles    | `No Pricing` removes `U`, `L`                               |
+| **Direct Overrides** | Final edge-case adjustment at user level    | Add `U` to *Stock Report* for one user only                 |
