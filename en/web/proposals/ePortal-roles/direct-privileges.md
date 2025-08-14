@@ -15,13 +15,13 @@ Direct grants should be used sparingly — only when roles and filters (like `No
 
 ---
 
-<details>
+<details markdown="1">
   <summary><strong>📑 Table of Contents (click to expand)</strong></summary>
 
-- [When to Use Direct Grants](#when-to-use-direct-grants)
-- [How Direct Grants Work](#how-direct-grants-work)
-- [Examples](#examples)
-- [Best Practices](#best-practices)
+- [`When to Use Direct Grants`](#when-to-use-direct-grants)
+- [`How Direct Grants Work`](#how-direct-grants-work)
+- [`Examples`](#examples)
+- [`Best Practices`](#best-practices)
 
 </details>
 
