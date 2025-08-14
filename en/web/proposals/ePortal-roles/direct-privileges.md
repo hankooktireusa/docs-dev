@@ -5,7 +5,6 @@ permalink: /en/web/proposals/ePortal-roles/direct-privileges/
 nav: false
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 {% include lang-toggle.html %}
 
 # 🧩 Direct Privilege Grants

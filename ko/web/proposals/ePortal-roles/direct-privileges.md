@@ -5,7 +5,6 @@ permalink: /ko/web/proposals/ePortal-roles/direct-privileges/
 nav: false
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 {% include lang-toggle.html %}
 
 # 🧩 직접 권한 부여
