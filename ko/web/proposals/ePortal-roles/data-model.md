@@ -164,20 +164,26 @@ nav: false
 ## 🗂️ 관련 데이터 행
 
 #### `users`
+<!-- table -->
+
 | id   | email               |
-|:----:|:--------------------|
+|-----:|:--------------------|
 | 2001 | johndoe@example.com |
 
 ---
 
 #### `roles`
-| id | name                          |
-|:--:|:------------------------------|
-| 1  | Order – WH Order Submission   |
+<!-- table -->
+
+| id | name                        |
+|---:|:----------------------------|
+| 1  | Order – WH Order Submission |
 
 ---
 
 #### `user_roles`
+<!-- table -->
+
 | user_id | role_id |
 |:-------:|:-------:|
 | 2001    | 1       |
@@ -185,6 +191,8 @@ nav: false
 ---
 
 #### `role_corporation`
+<!-- table -->
+
 | role_id | corporation |
 |:-------:|:-----------:|
 | 1       | US          |
@@ -192,6 +200,8 @@ nav: false
 ---
 
 #### `role_industry_segment`
+<!-- table -->
+
 | role_id | industry_segment |
 |:-------:|:-----------------|
 | 1       | Fleet            |
@@ -199,6 +209,8 @@ nav: false
 ---
 
 #### `permissions`
+<!-- table -->
+
 | id  | name             | feature | action |
 |:---:|:-----------------|:--------|:-------|
 | 101 | Order Submission | Order   | Create |
@@ -206,16 +218,20 @@ nav: false
 ---
 
 #### `privileges`
-| code | label       |
-|:----:|:------------|
-| A    | Access      |
-| S    | Stock       |
-| U    | Unit Price  |
-| L    | List Price  |
+<!-- table -->
+
+| code | label      |
+|:----:|:-----------|
+| A    | Access     |
+| S    | Stock      |
+| U    | Unit Price |
+| L    | List Price |
 
 ---
 
 #### `role_permissions`
+<!-- table -->
+
 | role_id | permission_id | privilege_code |
 |:-------:|:-------------:|:--------------:|
 | 1       | 101           | A              |
