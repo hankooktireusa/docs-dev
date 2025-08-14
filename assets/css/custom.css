@@ -206,3 +206,73 @@ h1:hover, h2:hover, h3:hover {
 
 /* Ensure summary marker spacing is nice across browsers */
 summary { display: list-item; }
+
+/* ===== Dark-theme table fixes (readability) ===== */
+.page-content table,
+.post-content table,
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 2rem;
+  font-size: 0.95rem;
+  border: 1px solid #2a2a2a;             /* subtle frame */
+}
+
+.page-content table th,
+.post-content table th,
+.markdown-body table th {
+  background: #0f0f10;                    /* darker header for contrast */
+  color: #f2f2f3;                          /* high-contrast text */
+  font-weight: 600;
+  text-align: left;
+  padding: .65rem .8rem;
+  border-bottom: 1px solid #2a2a2a;
+  border-top: 3px solid var(--hk-orange);  /* keep your orange accent */
+}
+
+.page-content table td,
+.post-content table td,
+.markdown-body table td {
+  background: #171819;                    /* body rows */
+  color: #e0e0e0;                          /* brighter text */
+  padding: .65rem .8rem;
+  border-top: 1px solid #2a2a2a;
+  vertical-align: top;
+}
+
+/* Zebra striping for long tables */
+.page-content table tr:nth-child(even) td,
+.post-content table tr:nth-child(even) td,
+.markdown-body table tr:nth-child(even) td {
+  background: #131415;
+}
+
+/* Make inline code readable inside tables */
+.page-content table code,
+.post-content table code,
+.markdown-body table code {
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  padding: .1rem .4rem;
+  border-radius: .35rem;
+  border: 1px solid #353535;
+  font-weight: 500;
+}
+
+/* Keep header code (e.g., `users`) crisp too */
+.page-content table th code,
+.post-content table th code,
+.markdown-body table th code {
+  background: rgba(255,255,255,.08);
+  border-color: #3a3a3a;
+}
+
+/* Allow wide tables to scroll on small screens */
+.page-content table,
+.post-content table,
+.markdown-body table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
