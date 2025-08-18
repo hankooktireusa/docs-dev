@@ -14,39 +14,45 @@
 body { line-height: 1.6; }
 
 /* Make the header container full-width & flush-left (override Minima) */
-.site-header { padding-block: 8px; }
-.site-header .wrapper {
+.site-header {
+  padding-block: 8px;                 /* add a little vertical breathing room */
+}
+.site-header .wrapper{
   max-width: none !important;
   width: 100%;
   margin: 0 !important;
   padding-left: 12px;
   padding-right: 12px;
 }
-.site-logo { margin-left: 0; }
-.site-logo img { display: block; height: 42px; }
+.site-logo{ margin-left: 0; }
+.site-logo img{ display:block; height: 42px; } /* slightly taller & crisp */
 
 /* ===========================
    Header layout
    =========================== */
+/* Logo hard-left; title+nav centered as a group */
 .header-bar {
   display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
+  grid-template-columns: auto 1fr;    /* left logo, center group fills row */
+  align-items: center;                 /* vertical centering within the header */
   padding: 0 16px;
-  min-height: 64px;
+  min-height: 64px;                    /* ensures consistent header height */
 }
 
 .site-logo { justify-self: start; }
 
 .header-center {
-  justify-self: center;
+  justify-self: center;                /* center the whole group horizontally */
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  white-space: nowrap;
+  align-items: center;                 /* vertically center title + nav */
+  gap: 1.5rem;                         /* space between title text and nav */
+  white-space: nowrap;                 /* keep in one line when possible */
 }
 
-.site-title-text { font-size: 1.8rem; font-weight: 500; }
+.site-title-text {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
 
 /* Keep nav links evenly spaced and vertically centered */
 .site-nav .trigger {
@@ -80,9 +86,10 @@ a:hover, a:focus {
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
-a:visited { color: #b44a06; }
-a:active  { color: #ff7d2a; }
+a:visited { color: #b44a06; }      /* darker orange for visited */
+a:active  { color: #ff7d2a; }       /* punch on click */
 
+/* Give headings a subtle HK accent underline on hover */
 h1:hover, h2:hover, h3:hover {
   text-decoration: underline;
   text-decoration-color: var(--hk-orange);
@@ -95,7 +102,7 @@ h1:hover, h2:hover, h3:hover {
    --------------------------- */
 @media (prefers-color-scheme: dark) {
   html, body {
-    background: #2a2a2a !important;
+    background: #2a2a2a !important;   /* charcoal (adjust anytime) */
     color: #e6e6e6 !important;
   }
 
@@ -110,53 +117,24 @@ h1:hover, h2:hover, h3:hover {
   .site-title-text:hover { color: var(--hk-orange); }
 
   /* Header navigation links */
-  .site-nav .page-link { color: #ffffff !important; }
-  .site-nav .page-link:hover { color: var(--hk-orange) !important; }
+  .site-nav .page-link {
+    color: #ffffff !important;       /* white text */
+  }
+  .site-nav .page-link:hover {
+    color: var(--hk-orange) !important; /* HK Orange on hover */
+  }
 
   /* Links pop on dark within content */
-  a { color: var(--hk-orange) !important; }
+  a { color:  var(--hk-orange) !important; }
   a:visited { color: #ff9f5e; }
   a:hover, a:focus { color: #cf5306; }
 
   /* Code blocks & inline code */
-  /* Style BOTH the wrapper and the elements to kill borders/shadows/corners */
-  .highlight,
-  .codehilite,
-  pre, code, pre code {
-    background: var(--hk-black) !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    border-radius: var(--radius) !important;
-    color: #e6e6e6 !important;
+  pre, code {
+    background: #3a3a3a;
+    border-radius: var(--radius);
   }
-  .highlight,
-  .codehilite { overflow: hidden; }          /* prevents white “corner” bleed */
   pre { padding: calc(var(--space) + 0.25rem); }
-  pre code { background-color: transparent !important; }
-
-  /* Brighter syntax highlighting (keep; no special fix for -la) */
-  /* Keywords */
-  .highlight .k, .highlight .kd, .highlight .kn,
-  .highlight .kp, .highlight .kr, .highlight .kt {
-    color: #ff7f50 !important; /* Coral orange */
-    font-weight: 600;
-  }
-  /* Strings */
-  .highlight .s, .highlight .s1, .highlight .s2 {
-    color: #90ee90 !important; /* Light green */
-  }
-  /* Numbers */
-  .highlight .m, .highlight .mi, .highlight .mf {
-    color: #ffa500 !important; /* Bright orange */
-  }
-  /* Comments */
-  .highlight .c, .highlight .cm, .highlight .c1 {
-    color: #9acd32 !important; /* Yellow-green */
-    font-style: italic;
-  }
-  /* Functions */
-  .highlight .nf { color: #1e90ff !important; } /* Dodger blue */
 
   /* Tables */
   table { border-collapse: collapse; }
@@ -186,8 +164,7 @@ h1:hover, h2:hover, h3:hover {
   }
   details > summary {
     cursor: pointer;
-    list-style: revert;
-    display: list-item;
+    list-style: none;       /* keep triangle but style text */
     padding: var(--space) calc(var(--space) + 0.25rem);
     color: #fff;
     font-weight: 600;
@@ -198,7 +175,6 @@ h1:hover, h2:hover, h3:hover {
   }
   details > summary:hover { color: var(--hk-orange); }
   details > *:not(summary) { padding: var(--space) calc(var(--space) + 0.25rem); }
-  details > summary::-webkit-details-marker { display: inline-block; }
 
   /* Horizontal rule */
   hr { border: 0; height: 1px; background: #444; }
@@ -206,73 +182,3 @@ h1:hover, h2:hover, h3:hover {
 
 /* Ensure summary marker spacing is nice across browsers */
 summary { display: list-item; }
-
-/* ===== Dark-theme table fixes (readability) ===== */
-.page-content table,
-.post-content table,
-.markdown-body table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0 2rem;
-  font-size: 0.95rem;
-  border: 1px solid #2a2a2a;             /* subtle frame */
-}
-
-.page-content table th,
-.post-content table th,
-.markdown-body table th {
-  background: #0f0f10;                    /* darker header for contrast */
-  color: #f2f2f3;                          /* high-contrast text */
-  font-weight: 600;
-  text-align: left;
-  padding: .65rem .8rem;
-  border-bottom: 1px solid #2a2a2a;
-  border-top: 3px solid var(--hk-orange);  /* keep your orange accent */
-}
-
-.page-content table td,
-.post-content table td,
-.markdown-body table td {
-  background: #171819;                    /* body rows */
-  color: #e0e0e0;                          /* brighter text */
-  padding: .65rem .8rem;
-  border-top: 1px solid #2a2a2a;
-  vertical-align: top;
-}
-
-/* Zebra striping for long tables */
-.page-content table tr:nth-child(even) td,
-.post-content table tr:nth-child(even) td,
-.markdown-body table tr:nth-child(even) td {
-  background: #131415;
-}
-
-/* Make inline code readable inside tables */
-.page-content table code,
-.post-content table code,
-.markdown-body table code {
-  background: rgba(255,255,255,.06);
-  color: #fff;
-  padding: .1rem .4rem;
-  border-radius: .35rem;
-  border: 1px solid #353535;
-  font-weight: 500;
-}
-
-/* Keep header code (e.g., `users`) crisp too */
-.page-content table th code,
-.post-content table th code,
-.markdown-body table th code {
-  background: rgba(255,255,255,.08);
-  border-color: #3a3a3a;
-}
-
-/* Allow wide tables to scroll on small screens */
-.page-content table,
-.post-content table,
-.markdown-body table {
-  display: block;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-

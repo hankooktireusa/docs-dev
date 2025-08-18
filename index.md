@@ -1,13 +1,22 @@
 ---
-layout: default
-title: root-redirect
-permalink: /
-nav: false
+title: Home
 ---
 
-<!-- Instant redirect (works with baseurl) -->
-<script>
-  window.location.replace('{{ "/en/" | relative_url }}');
-</script>
-<meta http-equiv="refresh" content="0; url={{ "/en/" | relative_url }}">
-<p>If you are not redirected, <a href="{{ "/en/" | relative_url }}">click here</a>.</p>
+# docs-dev — Home
+
+<details>
+  <summary>Expand: Root collapsible</summary>
+
+This is the root-level collapsible demo.
+
+```bash
+echo "hello from root index.md"
+```
+
+</details>
+
+## 📂 Sections
+- [nest1 index](./nest1/)
+- [nest1 test page](./nest1/test.html)
+- [nest2 index](./nest1/nest2/)
+- [nest2 page](./nest1/nest2/page.html)

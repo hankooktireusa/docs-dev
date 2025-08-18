@@ -2,27 +2,6 @@ title: docs-dev
 description: ""   # remove footer text
 theme: minima
 minima:
-  skin: dark      # force dark skin
-
-header_pages:
-  - en/index.md
-  - en/web/index.md
-  - en/web/proposals/index.md
-  - ko/index.md
-  - ko/web/index.md
-  - ko/web/proposals/index.md
-
-# Auto-apply front matter to everything under /en and /ko
-defaults:
-  - scope:
-      path: "en"
-    values:
-      lang: "en"
-  - scope:
-      path: "ko"
-    values:
-      lang: "ko"
-
+  skin: dark   # force dark skin
 include:
   - assets/css/custom.css
-  - _includes/lang-toggle.html
